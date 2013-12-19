@@ -1,0 +1,103 @@
+<!--{template common/header}-->
+<div id="pt" class="bm cl">
+	<div class="z">
+		<a href="./" class="nvhm" title="{lang homepage}">$_G['setting']['bbname']</a><em>&raquo;</em><a href="{$Plink}">淘寶代購</a>
+	</div>
+</div>
+
+<div class="bm bw0 cl">
+<p class="chart z"><em class="xi1">匯率: {$Pvar['rate']}</em><span class="pipe">|</span><em>手續費: <!--{if $Pvar['symbol'] == 1}-->HKD$<!--{elseif $Pvar['symbol'] == 2}-->RMB¥<!--{/if}--> {$Pvar['charge']}</em><span class="pipe">|</span><em>結算公式: <span class="xg1">{$Pvar['formula']}</span></em></p>
+</div>
+
+<div class="fl bm">
+	<div class="bm bmw cl">
+		<div class="bm_h cl"><h2>公告</h2></div>
+        <div class="bm_c">
+        	<table class="fl_tb"><tbody><tr><td>{$Pvar['announcement']}</td></tr></tbody></table>
+        </div>
+	</div>
+</div>
+
+<div id="ct" class="ct2_a wp cl">
+	<div class="mn">
+		<div class="bm bw0">
+			<div>
+            <!--{if $_GET[ac] == courier}-->
+                <p class="bbda pbm mbm">courier</p>
+				<p>123</p>
+            <!--{elseif $_GET[ac] == add}-->
+            	<p class="bbda pbm mbm">add</p>
+                <iframe id="frame_profile" name="frame_profile" style="display: none"></iframe>
+                <form action="home.php?mod=spacecp&amp;ac=profile&amp;op=edu" method="post" enctype="multipart/form-data" autocomplete="off" target="frame_profile" onsubmit="clearErrorInfo();">
+                <input type="hidden" value="c6775083" name="formhash">
+                <table cellspacing="0" cellpadding="0" class="tfm" id="profilelist">
+                <tbody>
+                <tr>
+                <th>商品連結</th>
+                <td><input type="text" name="taobaolink" id="taobaolink" class="px" value="" tabindex="1"><div class="rq mtn" id="showerror_graduateschool"></div><p class="d"></p></td>
+                </tr>
+                <tr>
+                <th>&nbsp;</th>
+                <td colspan="2">
+                <input type="hidden" name="profilesubmit" value="true">
+                <button type="submit" name="profilesubmitbtn" id="profilesubmitbtn" value="true" class="pn pnc"><strong>保存</strong></button>
+                <span id="submit_result" class="rq"></span>
+                </td>
+                </tr>
+                </tbody></table>
+                </form>
+                <script type="text/javascript">
+				function show_error(fieldid, extrainfo) {
+					var elem = $('th_'+fieldid);
+					if(elem) {
+						elem.className = "rq";
+						fieldname = elem.innerHTML;
+						extrainfo = (typeof extrainfo == "string") ? extrainfo : "";
+						$('showerror_'+fieldid).innerHTML = "請檢查該資料項 " + extrainfo;
+						$(fieldid).focus();
+					}
+				}
+				function show_success(message) {
+					message = message == '' ? '資料更新成功' : message;
+					showDialog(message, 'right', '提示信息', function(){
+						top.window.location.href = top.window.location.href;
+					}, 0, null, '', '', '', '', 3);
+				}
+				function clearErrorInfo() {
+					var spanObj = $('profilelist').getElementsByTagName("div");
+					for(var i in spanObj) {
+						if(typeof spanObj[i].id != "undefined" && spanObj[i].id.indexOf("_")) {
+							var ids = explode('_', spanObj[i].id);
+							if(ids[0] == "showerror") {
+								spanObj[i].innerHTML = '';
+								$('th_'+ids[1]).className = '';
+							}
+						}
+					}
+				}
+                </script>
+            <!--{elseif $_GET[ac] == order}-->
+            	<p class="bbda pbm mbm">order</p>
+				<p>123</p>
+            <!--{else}-->
+            	<p class="bbda pbm mbm">簡介</p>
+				<p>{$Pvar['about']}</p>
+            <!--{/if}-->
+			</div>
+		</div>
+	</div>
+	<div class="appl">
+		<div class="tbn">
+			<h2 class="mt bbda">淘寶代購</h2>
+			<ul>
+				<li class="cl{if empty($_GET[ac])} a{/if}"><a href="{$Plink}">簡介</a></li>
+				<li class="cl{if $_GET[ac] == courier} a{/if}"><a href="{$Plink}&amp;ac=courier">集運收費</a></li>
+				<li class="cl{if $_GET[ac] == add} a{/if}"><a href="{$Plink}&amp;ac=add">新增訂單</a></li>
+				<li class="cl{if $_GET[ac] == order} a{/if}"><a href="{$Plink}&amp;ac=order">我的訂單</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<br>
+
+<!--{template common/footer}-->
