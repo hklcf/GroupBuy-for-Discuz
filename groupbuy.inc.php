@@ -14,4 +14,3 @@ $Plink = 'plugin.php?id=groupbuy:groupbuy';
 include template('groupbuy:groupbuy');
 
 ?>
-1
