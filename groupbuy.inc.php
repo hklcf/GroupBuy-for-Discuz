@@ -1,7 +1,7 @@
 <?php
 
 if(!defined('IN_DISCUZ')) {
-  exit('Access Denied');
+	exit('Access Denied');
 }
 
 if(!$_G['uid']) {
